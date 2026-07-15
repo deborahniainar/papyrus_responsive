@@ -1,7 +1,8 @@
-#Installation
+# Installation
 
 npm install
 npm run dev
 
-##Visualization
+## Visualization
+
 Open your open browseer at: localhost:3000/demos/papyrus

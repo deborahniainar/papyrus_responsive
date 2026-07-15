@@ -5,4 +5,4 @@ npm run dev
 
 ## Visualization
 
-Open your open browseer at: localhost:3000/demos/papyrus
+Open your browser at: localhost:3000/demos/papyrus

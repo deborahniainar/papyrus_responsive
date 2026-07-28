@@ -63,13 +63,13 @@ export default function RegisterPage() {
           <span>J&apos;accepte les conditions d&apos;utilisation de PAPYRUS</span>
         </label>
 
-        <button
+        <Link
           className="flex min-h-13 items-center justify-center gap-4 rounded-lg border-0 bg-gradient-to-br from-(--primary-gradient-start) to-(--primary-gradient-end) text-base font-black text-white shadow-[0_14px_34px_var(--primary-shadow)] transition hover:-translate-y-0.5 hover:brightness-110"
-          type="submit"
+          href="/choisir-profil"
         >
           Creer mon compte
           <FaArrowRight />
-        </button>
+        </Link>
       </form>
 
       <div className="my-6 grid grid-cols-[1fr_auto_1fr] items-center gap-4">

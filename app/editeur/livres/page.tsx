@@ -1,0 +1,2 @@
+import { ManagementPage } from "@/components/workspace/management-page";
+export default function PublisherBooksPage() { return <ManagementPage title="Catalogue éditorial" description="Tous les livres rattachés à votre maison d’édition." columns={["Livre","Auteur","Statut","Performance"]} rows={[["L’ultime héritage","Claire Veyrac","Publié","18,4 k écoutes"],["Lumière noire","Arthur Delaunay","En validation","—"],["À fleur de peau","Sophie Talbot","Brouillon","—"]]} />; }

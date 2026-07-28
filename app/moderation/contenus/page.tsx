@@ -1,0 +1,2 @@
+import { ManagementPage } from "@/components/workspace/management-page";
+export default function ModerationContentPage() { return <ManagementPage title="Contenus signalés" description="Signalements en attente de traitement." columns={["Contenu","Motif","Priorité","Signalé le"]} rows={[["Avis #2841","Contenu inapproprié","Haute","Aujourd’hui"],["Livre audio #921","Droits d’auteur","Critique","Hier"]]} />; }

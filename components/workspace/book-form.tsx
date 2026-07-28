@@ -1,0 +1,14 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { FaArrowLeft, FaCheck, FaCloudArrowUp } from "react-icons/fa6";
+import { Sidebar } from "@/components/layout/sidebar";
+import { TopNav } from "@/components/layout/top-nav";
+
+const inputClass = "h-12 w-full rounded-xl border border-white/12 bg-black/20 px-4 outline-none placeholder:text-white/25 focus:border-primary";
+
+export function BookForm() {
+  const [saved, setSaved] = useState(false);
+  return <div className="min-h-screen bg-background text-foreground"><Sidebar /><div className="lg:pl-64"><TopNav /><main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8"><Link href="/auteur/livres" className="inline-flex items-center gap-2 text-sm font-bold text-white/45"><FaArrowLeft /> Mes livres</Link><h1 className="mt-6 text-3xl font-black">Créer un livre audio</h1><p className="mt-2 text-white/50">Préparez les informations éditoriales avant de soumettre votre projet.</p>{saved && <div className="mt-6 flex items-center gap-3 rounded-xl border border-emerald-400/20 bg-emerald-400/10 p-4 text-emerald-300"><FaCheck /> Brouillon enregistré.</div>}<form onSubmit={(event) => { event.preventDefault(); setSaved(true); }} className="mt-7 grid gap-6 rounded-2xl border border-white/8 bg-white/[0.025] p-5 sm:p-7"><div className="grid gap-5 sm:grid-cols-2"><label><span className="mb-2 block text-sm font-bold">Titre</span><input required className={inputClass} placeholder="Titre du livre" /></label><label><span className="mb-2 block text-sm font-bold">Langue</span><select className={inputClass}><option>Français</option><option>Anglais</option></select></label></div><label><span className="mb-2 block text-sm font-bold">Description</span><textarea className="min-h-36 w-full rounded-xl border border-white/12 bg-black/20 p-4 outline-none focus:border-primary" placeholder="Présentez votre livre..." /></label><div className="grid gap-5 sm:grid-cols-2"><label><span className="mb-2 block text-sm font-bold">Catégorie</span><select className={inputClass}><option>Romans</option><option>Business</option><option>Éducation</option></select></label><label><span className="mb-2 block text-sm font-bold">Prix</span><input className={inputClass} type="number" min="0" step="0.01" placeholder="9,99" /></label></div><button type="button" className="grid min-h-36 place-items-center rounded-xl border border-dashed border-primary/50 bg-primary/5 text-primary"><span><FaCloudArrowUp className="mx-auto mb-3 size-8" />Importer la couverture ou les fichiers audio</span></button><div className="flex flex-col gap-3 sm:flex-row sm:justify-end"><button type="submit" className="min-h-12 rounded-xl border border-primary px-6 font-bold text-primary">Enregistrer le brouillon</button><button type="button" className="min-h-12 rounded-xl bg-primary px-6 font-black text-black">Soumettre pour validation</button></div></form></main></div></div>;
+}

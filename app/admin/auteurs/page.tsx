@@ -1,0 +1,2 @@
+import { ManagementPage } from "@/components/workspace/management-page";
+export default function AdminAuthorsPage() { return <ManagementPage title="Auteurs" description="Vérifiez les profils créateurs et leurs publications." columns={["Auteur","Livres","Vérification","Activité"]} rows={[["Claire Veyrac","8","Vérifié","Aujourd’hui"],["Arthur Delaunay","5","Vérifié","Hier"],["Sophie Talbot","3","À vérifier","22 juillet"]]} />; }

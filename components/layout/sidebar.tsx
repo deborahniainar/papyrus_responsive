@@ -27,6 +27,12 @@ import {
   FaTableCellsLarge,
   FaTag,
   FaUser,
+  FaUsers,
+  FaPenNib,
+  FaBuilding,
+  FaShieldHalved,
+  FaMoneyBillTrendUp,
+  FaHeadset,
 } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 import { motion } from "framer-motion";
@@ -34,6 +40,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useRole } from "@/components/auth/role-provider";
 
 type SidebarItem = {
   icon: IconType;
@@ -42,7 +49,7 @@ type SidebarItem = {
 };
 
 type SidebarSection = {
-  id: "navigation" | "categories" | "collections" | "profile";
+  id: "workspace" | "navigation" | "categories" | "collections" | "profile";
   title: string;
   items: SidebarItem[];
 };
@@ -186,7 +193,51 @@ function SidebarSectionBlock({
 
 export function Sidebar() {
   const pathname = usePathname();
+  const { user } = useRole();
+  const workspaceItems: Partial<Record<typeof user.role, SidebarItem[]>> = {
+    author: [
+      { icon: FaChartSimple, label: "Espace auteur", href: "/auteur" },
+      { icon: FaBook, label: "Mes livres", href: "/auteur/livres" },
+      { icon: FaPenNib, label: "Nouveau livre", href: "/auteur/livres/nouveau" },
+      { icon: FaUser, label: "Profil auteur", href: "/auteur/profil" },
+    ],
+    publisher: [
+      { icon: FaChartSimple, label: "Espace éditeur", href: "/editeur" },
+      { icon: FaBook, label: "Catalogue éditorial", href: "/editeur/livres" },
+      { icon: FaUsers, label: "Nos auteurs", href: "/editeur/auteurs" },
+      { icon: FaBuilding, label: "Maison d’édition", href: "/editeur/profil" },
+    ],
+    admin: [
+      { icon: FaShieldHalved, label: "Administration", href: "/admin" },
+      { icon: FaUsers, label: "Utilisateurs", href: "/admin/utilisateurs" },
+      { icon: FaPenNib, label: "Auteurs", href: "/admin/auteurs" },
+      { icon: FaBook, label: "Livres à valider", href: "/admin/livres" },
+    ],
+    super_admin: [
+      { icon: FaShieldHalved, label: "Administration", href: "/admin" },
+      { icon: FaUsers, label: "Utilisateurs", href: "/admin/utilisateurs" },
+      { icon: FaPenNib, label: "Auteurs", href: "/admin/auteurs" },
+      { icon: FaBook, label: "Livres à valider", href: "/admin/livres" },
+      { icon: FaGear, label: "Rôles et accès", href: "/admin/roles" },
+    ],
+    moderator: [
+      { icon: FaShieldHalved, label: "Modération", href: "/moderation" },
+      { icon: FaBook, label: "Contenus signalés", href: "/moderation/contenus" },
+    ],
+    support: [
+      { icon: FaHeadset, label: "Centre support", href: "/support" },
+      { icon: FaUsers, label: "Dossiers clients", href: "/support/dossiers" },
+    ],
+    accounting: [
+      { icon: FaMoneyBillTrendUp, label: "Comptabilité", href: "/comptabilite" },
+      { icon: FaBookOpen, label: "Transactions", href: "/comptabilite/transactions" },
+    ],
+  };
+  const visibleSections: SidebarSection[] = workspaceItems[user.role]?.length
+    ? [{ id: "workspace", title: "Espace professionnel", items: workspaceItems[user.role] ?? [] }, ...sections]
+    : sections;
   const [openSections, setOpenSections] = useState<Record<SidebarSection["id"], boolean>>({
+    workspace: true,
     navigation: true,
     categories: true,
     collections: true,
@@ -219,7 +270,7 @@ export function Sidebar() {
 
       <ScrollArea className="min-h-0 w-full flex-1">
         <div className="space-y-8 px-4 py-6 pb-32">
-          {sections.map((section) => (
+          {visibleSections.map((section) => (
             <SidebarSectionBlock
               isLinkActive={isLinkActive}
               key={section.id}
@@ -229,7 +280,7 @@ export function Sidebar() {
             />
           ))}
 
-          <div className="rounded-lg border border-white/8 bg-white/[0.035] p-4">
+          {(user.role === "user" || user.role === "premium_user") && <div className="rounded-lg border border-white/8 bg-white/[0.035] p-4">
             <div className="mb-4 flex items-center gap-3">
               <div className="grid size-10 shrink-0 place-items-center rounded-lg bg-primary/12 text-primary">
                 <FaCrown className="size-5" />
@@ -244,7 +295,7 @@ export function Sidebar() {
             <Button className="h-10 w-full rounded-lg bg-primary text-sm font-black text-black hover:bg-primary/90">
               Découvrir
             </Button>
-          </div>
+          </div>}
         </div>
       </ScrollArea>
     </aside>

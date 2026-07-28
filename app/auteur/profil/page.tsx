@@ -1,0 +1,2 @@
+import { ManagementPage } from "@/components/workspace/management-page";
+export default function AuthorProfilePage() { return <ManagementPage title="Profil auteur" description="Informations publiques et statut de votre profil créateur." columns={["Information","Valeur","Visibilité"]} rows={[["Nom public","Claire Veyrac","Public"],["Biographie","Autrice de romans contemporains","Public"],["Statut","Vérifié","Interne"]]} />; }

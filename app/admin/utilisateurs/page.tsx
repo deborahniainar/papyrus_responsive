@@ -1,0 +1,2 @@
+import { ManagementPage } from "@/components/workspace/management-page";
+export default function AdminUsersPage() { return <ManagementPage title="Utilisateurs" description="Consultez et supervisez les comptes PAPYRUS." columns={["Utilisateur","Rôle","Statut","Inscription"]} rows={[["Lucie Morel","Premium","Actif","28 juillet 2026"],["Claire Veyrac","Auteur","Actif","16 juillet 2026"],["Marc Dumas","Utilisateur","Suspendu","2 juin 2026"]]} />; }

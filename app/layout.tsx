@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "@/styles/globals.css";
 import { PageLoader } from "@/components/common/page-loader";
 import { Suspense } from "react";
+import { RoleProvider } from "@/components/auth/role-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,12 +27,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
-      <body className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="fr" suppressHydrationWarning>
+      <body className={`${inter.variable} ${playfair.variable}`} suppressHydrationWarning>
         <Suspense fallback={null}>
           <PageLoader />
         </Suspense>
-        {children}
+        <RoleProvider>{children}</RoleProvider>
       </body>
     </html>
   );

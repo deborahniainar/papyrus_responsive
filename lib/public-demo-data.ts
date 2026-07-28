@@ -48,20 +48,42 @@ export const publicBooks = [
   }
 ];
 
-export const publicCategories = [
-  "Developpement personnel",
-  "Romans",
-  "Business",
-  "Histoire",
-  "Spiritualite",
-  "Philosophie",
-  "Biographie",
-  "Science",
-  "Suspense",
-  "Fiction",
-  "Education",
-  "Jeunesse"
+export const publicGenres = [
+  {
+    label: "Développement personnel",
+    slug: "developpement-personnel"
+  },
+  {
+    label: "Romans & Fiction",
+    slug: "romans-fiction"
+  },
+  {
+    label: "Business & Marketing",
+    slug: "business-marketing"
+  },
+  {
+    label: "Histoire",
+    slug: "histoire"
+  },
+  {
+    label: "Philosophie",
+    slug: "philosophie"
+  },
+  {
+    label: "Science & Technologie",
+    slug: "science-technologie"
+  },
+  {
+    label: "Santé & Bien-être",
+    slug: "sante-bien-etre"
+  },
+  {
+    label: "Enfants & Famille",
+    slug: "enfants-famille"
+  }
 ];
+
+export const publicCategories = publicGenres.map((genre) => genre.label);
 
 export const publicInterests = [
   "Livres Premium",

@@ -1,0 +1,2 @@
+import { ManagementPage } from "@/components/workspace/management-page";
+export default function AdminRolesPage() { return <ManagementPage title="Rôles et accès" description="Vue des rôles système et de leurs périmètres." columns={["Rôle","Utilisateurs","Périmètre","Type"]} rows={[["Super administrateur","2","Accès complet","Système"],["Administrateur","8","Gestion de plateforme","Système"],["Auteur","1 248","Studio créateur","Métier"],["Maison d’édition","84","Catalogue éditorial","Métier"],["Support","12","Dossiers clients","Interne"]]} />; }

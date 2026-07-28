@@ -7,6 +7,7 @@ import { FaBars, FaBell, FaChevronDown, FaCrown, FaXmark } from "react-icons/fa6
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { SmartSearch } from "@/features/search/smart-search";
+import { useRole } from "@/components/auth/role-provider";
 
 const mobileLinks = [
   ["Accueil", "/accueil"],
@@ -22,6 +23,7 @@ const mobileLinks = [
 export function TopNav() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const { user, profile } = useRole();
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/5 bg-background/90 backdrop-blur-md">
@@ -42,13 +44,13 @@ export function TopNav() {
         </div>
 
         <div className="flex shrink-0 items-center gap-2 sm:gap-4">
-          <Button
+          {(user.role === "user" || user.role === "premium_user") && <Button
             variant="outline"
             className="hidden h-10 items-center gap-2 border-primary/20 bg-primary/10 px-4 text-xs font-bold text-primary hover:bg-primary/20 md:flex"
           >
             <FaCrown className="size-3.5" />
             Premium
-          </Button>
+          </Button>}
 
           <Button
             variant="ghost"
@@ -66,9 +68,9 @@ export function TopNav() {
             </Avatar>
             <div className="hidden flex-col items-start xl:flex">
               <span className="text-sm font-bold text-white transition-colors group-hover:text-primary">
-                John Doe
+                {user.name}
               </span>
-              <span className="text-[10px] font-black uppercase text-primary">Premium</span>
+              <span className="text-[10px] font-black uppercase text-primary">{profile.shortLabel}</span>
             </div>
             <FaChevronDown className="hidden size-3 text-white/30 transition-colors group-hover:text-white sm:block xl:ml-1" />
           </Link>

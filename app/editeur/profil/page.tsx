@@ -1,0 +1,2 @@
+import { ManagementPage } from "@/components/workspace/management-page";
+export default function PublisherProfilePage() { return <ManagementPage title="Maison d’édition" description="Identité, coordonnées et informations de votre organisation." columns={["Information","Valeur","Statut"]} rows={[["Raison sociale","Éditions Papyrus","Vérifié"],["Catalogue","148 titres","Actif"],["Contrat","Partenaire Premium","Valide"]]} />; }

@@ -4,9 +4,9 @@
   "private": true,
   "description": "Partie web MVP de PAPYRUS - plateforme premium de livres audio.",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build && node scripts/verify-static-export.mjs",
-    "start": "next start",
+    "dev": "node init && next dev",
+    "build": "node init && next build && node scripts/verify-static-export.mjs",
+    "start": "node init && next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",

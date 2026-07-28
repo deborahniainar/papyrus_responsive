@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   FaApple,
   FaArrowRight,
@@ -8,6 +11,7 @@ import {
   FaLock
 } from "react-icons/fa6";
 import { AuthShell } from "@/components/auth/auth-shell";
+import { useRole } from "@/components/auth/role-provider";
 
 const fieldWrap =
   "flex min-h-13 items-center gap-3 rounded-lg border border-white/20 bg-black/40 px-4 transition focus-within:border-primary/70 focus-within:bg-black/65 focus-within:shadow-[0_0_0_4px_var(--primary-shadow)]";
@@ -16,6 +20,9 @@ const socialButton =
   "flex min-h-13 items-center justify-center gap-3 rounded-lg border border-white/20 bg-white/[0.035] text-[0.96rem] font-bold text-white transition hover:border-white/30 hover:bg-white/10";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const { profile } = useRole();
+
   return (
     <AuthShell>
       <div className="mb-8 text-center">
@@ -23,7 +30,13 @@ export default function LoginPage() {
         <p className="m-0 text-white/70">Connectez-vous a votre compte pour continuer</p>
       </div>
 
-      <form className="grid gap-5">
+      <form
+        className="grid gap-5"
+        onSubmit={(event) => {
+          event.preventDefault();
+          router.push(profile.home);
+        }}
+      >
         <label className="grid gap-2">
           <span className="text-sm text-white/80">Email</span>
           <div className={fieldWrap}>
@@ -59,13 +72,13 @@ export default function LoginPage() {
           </Link>
         </div>
 
-        <Link
+        <button
           className="flex min-h-13 items-center justify-center gap-4 rounded-lg bg-gradient-to-br from-(--primary-gradient-start) to-(--primary-gradient-end) text-base font-black text-white shadow-[0_14px_34px_var(--primary-shadow)] transition hover:-translate-y-0.5 hover:brightness-110"
-          href="/accueil"
+          type="submit"
         >
           Se connecter
           <FaArrowRight />
-        </Link>
+        </button>
       </form>
 
       <div className="my-6 grid grid-cols-[1fr_auto_1fr] items-center gap-4">

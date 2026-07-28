@@ -1,0 +1,2 @@
+import { ManagementPage } from "@/components/workspace/management-page";
+export default function AuthorBooksPage() { return <ManagementPage title="Mes livres" description="Créez, modifiez et soumettez vos projets audio." columns={["Titre","Statut","Chapitres","Mise à jour"]} rows={[["Les silences de l’aube","En validation","12","Aujourd’hui"],["L’ultime héritage","Publié","24","21 juillet"],["À fleur de peau","Brouillon","8","18 juillet"]]} action={{ label: "Nouveau livre", href: "/auteur/livres/nouveau" }} />; }

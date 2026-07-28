@@ -1,0 +1,2 @@
+import { ManagementPage } from "@/components/workspace/management-page";
+export default function PublisherAuthorsPage() { return <ManagementPage title="Nos auteurs" description="Gérez les auteurs associés à votre catalogue." columns={["Auteur","Livres","Statut","Dernière activité"]} rows={[["Claire Veyrac","8","Actif","Aujourd’hui"],["Arthur Delaunay","5","Actif","Hier"],["Sophie Talbot","3","En invitation","22 juillet"]]} />; }
